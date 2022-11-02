@@ -20,16 +20,19 @@
 <body>
 <jsp:include page="layout/header.jsp" flush="false"></jsp:include>
 <div class="container" id="save-form">
-    <form action="/board/save" method="post" name="saveForm">
+    <form action="/board/save" method="post" name="saveForm" enctype="multipart/form-data">
+<%--        파일 첨부 시 반드시 form 태그에 enctype="multipart/form-data 를 적용시켜 주어야 함
+            파일 업로드는 반드시 post 타입이어야 함 --%>
         <input type="text" name="boardWriter" placeholder="작성자" class="form-control">
         <span id="writerCheck"></span> <br>
         <input type="text" name="boardPass" placeholder="비밀번호" class="form-control">
         <span id="passCheck"></span> <br>
         <input type="text" name="boardTitle" placeholder="제목" class="form-control">
         <span id="titleCheck"></span> <br>
-<%--        <input type="text" name="boardContents" placeholder="내용" class="form-control">--%>
         <textarea name="boardContents" cols="30" rows="10" placeholder="내용" class="form-control"></textarea>
         <span id="contentsCheck"></span> <br>
+        <input type="file" class="form-control" name="boardFile">
+<%--            name 값이 반드시 있어야 하고, DTO의 MultipartFile 필드 이름과 일치해야 함 --%>
         <input type="button" value="작성완료" onclick="setup()" class="btn btn-primary">
     </form>
 </div>

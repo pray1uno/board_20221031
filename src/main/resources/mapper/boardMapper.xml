@@ -4,9 +4,14 @@
 
 
 <mapper namespace="Board">
-    <insert id="boardInsert" parameterType="boardDTO">
-        insert into board_table(boardWriter, boardPass, boardTitle, boardContents)
-        value (#{boardWriter}, #{boardPass}, #{boardTitle}, #{boardContents})
+    <insert id="boardInsert" parameterType="boardDTO" useGeneratedKeys="true" keyProperty="id">
+        insert into board_table(boardWriter, boardPass, boardTitle, boardContents, fileAttached)
+        value (#{boardWriter}, #{boardPass}, #{boardTitle}, #{boardContents}, #{fileAttached})
+    </insert>
+
+    <insert id="saveFile" parameterType="boardDTO">
+        insert into board_file_table(originalFileName, storedFileName, boardID)
+        values (#{originalFileName}, #{storedFileName}, #{id})
     </insert>
 
     <select id="boardList" resultType="boardDTO">
@@ -14,7 +19,12 @@
     </select>
 
     <select id="listLookup" parameterType="Long" resultType="boardDTO">
-        select * from board_table where id = #{id}
+        select * from board_table where id=#{id}
+    </select>
+
+    <select id="listLookupFile" parameterType="Long" resultType="boardDTO">
+        select * from board_table b, board_file_table bf
+        where b.id = bf.boardId and b.id = #{id}
     </select>
 
     <delete id="boardDelete" parameterType="Long">

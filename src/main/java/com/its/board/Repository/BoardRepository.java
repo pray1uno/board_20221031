@@ -12,8 +12,15 @@ public class BoardRepository {
     @Autowired
     private SqlSessionTemplate sql;
 
-    public int save(BoardDTO boardDTO) {
-        return sql.insert("Board.boardInsert", boardDTO);
+    public BoardDTO save(BoardDTO boardDTO) {
+        System.out.println("insert 전 boardDTO = " + boardDTO);
+        sql.insert("Board.boardInsert", boardDTO);
+        System.out.println("insert 후 boardDTO = " + boardDTO);
+        return boardDTO;
+    }
+
+    public void saveFileName(BoardDTO boardDTO) {
+        sql.insert("Board.saveFile", boardDTO);
     }
 
     public List<BoardDTO> boardList() {
@@ -25,7 +32,12 @@ public class BoardRepository {
     }
 
     public BoardDTO listLookup(Long id) {
-        return sql.selectOne("Board.listLookup", id);
+        BoardDTO boardDTO = sql.selectOne("Board.listLookup", id);
+        if (boardDTO.getFileAttached() == 1) {
+            return sql.selectOne("Board.listLookupFile", id);
+        } else {
+            return boardDTO;
+        }
     }
 
     public int boardDelete(Long delete) {
@@ -45,4 +57,6 @@ public class BoardRepository {
     public BoardDTO checkPass(Long boardDTO) {
         return sql.selectOne("Board.checkPass", boardDTO);
     }
+
+
 }

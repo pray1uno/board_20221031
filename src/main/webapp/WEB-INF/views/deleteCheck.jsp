@@ -10,13 +10,19 @@
 <head>
     <title>Delete</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.rtl.min.css">
+    <style>
+        #delete-Check {
+            width: 800px;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="layout/header.jsp" flush="false"></jsp:include>
-<div class="container">
+<div class="container" id="delete-Check">
     <form action="/board/delete" method="get" name="deleteForm">
         <input type="text" name="boardPass" class="form-control" placeholder="비밀번호 확인"
-               id="inputPass">
+               id="inputPass"> <br>
         <input type="button" value="확인" onclick="deleteFn()">
     </form>
 </div>
