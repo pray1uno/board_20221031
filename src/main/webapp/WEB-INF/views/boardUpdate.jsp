@@ -29,17 +29,15 @@
         제목
         <input type="text" name="boardTitle" value="${updateResult.boardTitle}" class="form-control"> <br>
         내용
-        <input type="text" name="boardContents" value="${updateResult.boardContents}" class="form-control"> <br>
-<%--        수정시간--%>
-<%--        <input type="text" name="boardCreatedDate" value="${updateResult.boardCreatedDate}" class="form-control"--%>
-<%--               readonly> <br>--%>
-        <input type="button" value="수정 완료" class="btn btn-success" onclick="update()">
+        <textarea name="boardContents" cols="30" rows="10" class="form-control">${updateResult.boardContents}</textarea>
+        <br>
+        <input type="button" value="수정 완료" class="btn btn-success" onclick="updateReqFn()">
         <a href="/" class="btn btn-dark">홈으로 가기</a>
     </form>
 </div>
 </body>
 <script>
-    const update = () => {
+    const updateReqFn = () => {
         const passwordDB = '${updateResult.boardPass}';
         const inputPW = document.getElementById("inputPass").value;
 
@@ -50,6 +48,5 @@
         }
 
     }
-
 </script>
 </html>

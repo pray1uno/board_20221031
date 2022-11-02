@@ -11,12 +11,11 @@
     <title>boardDetail</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.rtl.min.css">
     <style>
-        #button-form {
 
-        }
     </style>
 </head>
 <body>
+<jsp:include page="layout/header.jsp" flush="false"></jsp:include>
 <div class="container">
     <a href="/">홈으로 가기</a>
     <table class="table table-striped">
@@ -52,23 +51,28 @@
             <th>수정/삭제</th>
             <td id="button-form">
                 <button class="btn btn-primary" onclick="boardUpdate()">수정</button>
-                <button class="btn btn-danger" onclick="boardDelete('${listResult.id}')">삭제</button>
+                <button class="btn btn-danger" onclick="boardDelete()">삭제</button>
+                <button class="btn btn-success" onclick="boardReturn()">목록</button>
             </td>
         </tr>
-
-
     </table>
 </div>
 
 </body>
 <script>
-    const boardDelete = (clickId) => {
-        location.href = "/board/delete?id=" + clickId;
+    const boardDelete = () => {
+        location.href = "/board/deleteForm?id=" + '${listResult.id}';
     }
 
     const boardUpdate = () => {
         const result = '${listResult.id}';
         location.href = "/boardUpdate?id=" + result;
+
+    }
+
+    const boardReturn = () => {
+        location.href = "/board/";
+
     }
 </script>
 </html>

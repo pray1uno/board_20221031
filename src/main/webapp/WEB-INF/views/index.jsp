@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.rtl.min.css">
 </head>
 <body>
-
+<jsp:include page="layout/header.jsp" flush="false"></jsp:include>
 <button class="btn btn-primary" onclick="newFn()">신규 글 작성</button>
 <button class="btn btn-dark" onclick="listFn()">글 목록 조회</button>
 </body>

@@ -14,10 +14,11 @@
 <style>
     #save-form {
         width: 800px;
-        padding-top: 50px;
+        margin-top: 50px;
     }
 </style>
 <body>
+<jsp:include page="layout/header.jsp" flush="false"></jsp:include>
 <div class="container" id="save-form">
     <form action="/board/save" method="post" name="saveForm">
         <input type="text" name="boardWriter" placeholder="작성자" class="form-control">
@@ -26,7 +27,8 @@
         <span id="passCheck"></span> <br>
         <input type="text" name="boardTitle" placeholder="제목" class="form-control">
         <span id="titleCheck"></span> <br>
-        <input type="text" name="boardContents" placeholder="내용" class="form-control">
+<%--        <input type="text" name="boardContents" placeholder="내용" class="form-control">--%>
+        <textarea name="boardContents" cols="30" rows="10" placeholder="내용" class="form-control"></textarea>
         <span id="contentsCheck"></span> <br>
         <input type="button" value="작성완료" onclick="setup()" class="btn btn-primary">
     </form>

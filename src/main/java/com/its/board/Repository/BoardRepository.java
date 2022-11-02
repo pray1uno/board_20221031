@@ -20,11 +20,15 @@ public class BoardRepository {
         return sql.selectList("Board.boardList");
     }
 
+    public void updateHits(Long id) {
+        sql.update("Board.updateHits", id);
+    }
+
     public BoardDTO listLookup(Long id) {
         return sql.selectOne("Board.listLookup", id);
     }
 
-    public int boardDelete(int delete) {
+    public int boardDelete(Long delete) {
         return sql.delete("Board.boardDelete", delete);
     }
 
@@ -35,5 +39,10 @@ public class BoardRepository {
 
     public int update(BoardDTO boardDTO) {
         return sql.update("Board.update", boardDTO);
+    }
+
+
+    public BoardDTO checkPass(Long boardDTO) {
+        return sql.selectOne("Board.checkPass", boardDTO);
     }
 }
