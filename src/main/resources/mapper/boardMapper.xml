@@ -47,4 +47,13 @@
         select * from board_table where id = #{id}
     </select>
 
+<!--    Map으로 넘겼을 때는 key 값을 #{}에 사용함-->
+    <select id="pagingList" parameterType="java.util.HashMap" resultType="boardDTO">
+        select * from board_table order by id desc limit #{start}, #{limit}
+    </select>
+
+    <select id="boardCount" resultType="Integer">
+        select count(id) from board_table
+    </select>
+
 </mapper>

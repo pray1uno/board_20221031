@@ -82,7 +82,8 @@
     }
 
     const boardReturn = () => {
-        location.href = "/board/";
+        const page = '${page}'
+        location.href = "/board/paging?page=" + page;
 
     }
 </script>

@@ -26,9 +26,8 @@
     <table class="table table-striped table-hover text-center">
         <tr>
             <th>글 번호</th>
-            <th>작성자</th>
-            <th>비밀번호</th>
             <th>제목</th>
+            <th>작성자</th>
             <th>작성 시간</th>
             <th>조회수</th>
         </tr>
@@ -36,10 +35,9 @@
             <tr>
                 <td>${board.id}</td>
                 <td>
-                    <a href="/board?id=${board.id}">${board.boardWriter}</a>
+                    <a href="/board?id=${board.id}&page=${paging.page}">${board.boardTitle}</a>
                 </td>
-                <td>${board.boardPass}</td>
-                <td>${board.boardTitle}</td>
+                <td>${board.boardWriter}</td>
                 <td>
                     <fmt:formatDate value="${board.boardCreatedDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate>
 
