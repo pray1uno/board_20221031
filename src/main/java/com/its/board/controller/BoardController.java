@@ -95,4 +95,13 @@ public class BoardController {
         return "boardDetail";
     }
 
+    // 검색처리
+    @GetMapping("/board/search")
+    public String search(@RequestParam("type") String type,
+                         @RequestParam("q") String q, Model model) {
+        List<BoardDTO> searchList = boardService.search(type, q);
+        model.addAttribute("listResult", searchList);
+        return "boardList";
+    }
+
 }
