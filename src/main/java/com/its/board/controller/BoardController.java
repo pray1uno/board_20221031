@@ -1,8 +1,10 @@
 package com.its.board.controller;
 
 import com.its.board.DTO.BoardDTO;
+import com.its.board.DTO.CommentDTO;
 import com.its.board.DTO.PageDTO;
 import com.its.board.Service.BoardService;
+import com.its.board.Service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +19,11 @@ import java.util.List;
 @Controller
 // @RequestMapping(/공통주소) 이라는 것도 있음 참고
 public class BoardController {
+    // Autowired 는 각 어노테이션 당 1개의 줄만 적용됨, 복수 사용하기 위해서는 복수만큼 줄마다 적용시켜 줘야함
     @Autowired
     private BoardService boardService;
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/board/save")
     public String savePage() {
@@ -59,6 +64,8 @@ public class BoardController {
         model.addAttribute("listResult", listResult);
         model.addAttribute("page",page);
         System.out.println("listResult = " + listResult);
+        List<CommentDTO> listload = commentService.listload(id);
+        model.addAttribute("commentList", listload);
         return "boardDetail";
     }
     

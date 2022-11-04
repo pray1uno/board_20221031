@@ -9,4 +9,8 @@
         values (#{commentWriter}, #{commentContents}, #{boardId})
     </insert>
 
+    <select id="commentList" parameterType="Long" resultType="commentDTO">
+        select * from comment_table where boardId=#{boardId} order by id desc
+    </select>
+
 </mapper>
